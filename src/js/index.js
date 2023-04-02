@@ -9,10 +9,10 @@ Notiflix.Notify.init({
     position: 'center-top',
     distance: '54px',
     timeout: 1000,
-    clickToClose: true,
+    clickToClose: false,
 });
 
-API_KEY_PIXABAY = "34930678-f4d511ae74090860518da87d0";
+const API_KEY_PIXABAY = "34930678-f4d511ae74090860518da87d0";
 let page = 1;
 let query = '';
 
@@ -101,7 +101,7 @@ function renderGallery({ data, totalHits }) {
 
 async function getImages(query, page) {
     try {
-        const response = await axios.get(`/?key=${API_KEY_PIXABAY}&q=${query}&image_type=photo&orientation=horizontal&safesearch=true&per_page=200&page=${page}`, {
+        const response = await axios.get(`/?key=${API_KEY_PIXABAY}&q=${query}&image_type=photo&orientation=horizontal&safesearch=true&per_page=40&page=${page}`, {
             baseURL: 'https://pixabay.com/api',
             transformResponse: [function (tempResponse) {
                 const totalHits = JSON.parse(tempResponse).totalHits;
